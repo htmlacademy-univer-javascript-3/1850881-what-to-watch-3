@@ -1,7 +1,17 @@
-export function PlayerPage() {
+import './player-page.css';
+import {useParams} from 'react-router-dom';
+import {MyListPageProps} from '../my-list-page/my-list-page.tsx';
+
+type PlayerPageProps = MyListPageProps;
+
+export function PlayerPage({films}: PlayerPageProps) {
+  const {id} = useParams();
+  const filmId = Number(id);
+  const film = films.at(filmId - 1);
+
   return (
     <div className="player">
-      <video src="#" className="player__video" poster="img/player-poster.jpg"></video>
+      <video src="#" className="player__video" poster={film?.posterImg}></video>
 
       <button type="button" className="player__exit">Exit</button>
 

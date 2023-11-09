@@ -22,13 +22,13 @@ export function App(props: AppProps) {
           path={AppRoute.MyList}
           element={
             <PrivateRoute authorizationStatus={AuthorizationStatus.NoAuth}>
-              <MyListPage/>
+              <MyListPage {...props}/>
             </PrivateRoute>
           }
         />
         <Route path={AppRoute.Film} element={<FilmPage/>}/>
-        <Route path={AppRoute.AddReview} element={<AddReviewPage/>}/>
-        <Route path={AppRoute.Player} element={<PlayerPage/>}/>
+        <Route path={AppRoute.AddReview} element={<AddReviewPage {...props}/>}/>
+        <Route path={AppRoute.Player} element={<PlayerPage {...props}/>}/>
         <Route path='*' element={<NotFoundPage/>}/>
       </Routes>
     </BrowserRouter>

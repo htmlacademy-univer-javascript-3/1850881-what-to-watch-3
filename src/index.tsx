@@ -1,8 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import {App} from './components/app/app.tsx';
-import {films, promoFilm} from './mock-data/films';
-import {genres} from './mock-data/genres';
+import {films, promoFilm} from './mocks/films';
+import {genres} from './mocks/genres';
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement

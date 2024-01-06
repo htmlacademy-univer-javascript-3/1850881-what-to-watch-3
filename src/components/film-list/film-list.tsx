@@ -9,7 +9,7 @@ export function FilmList({films}: FilmListProps) {
   return (
     <div className="catalog__films-list">
       {
-        films.map((film) => <FilmCard filmName={film.name} posterImg={film.posterImg} id={film.id} key={film.id}/>)
+        films.map((film) => <FilmCard filmName={film.name} posterImg={film.posterImage} id={film.id} key={film.id}/>)
       }
     </div>
   );

@@ -1,17 +1,20 @@
-import './player-page.css';
+import styles from './player-page.module.css';
 import {useParams} from 'react-router-dom';
 import {MyListPageProps} from '../my-list-page/my-list-page.tsx';
+import {NotFoundPage} from '../not-found-page/not-found-page.tsx';
 
 type PlayerPageProps = MyListPageProps;
 
 export function PlayerPage({films}: PlayerPageProps) {
   const {id} = useParams();
-  const filmId = Number(id);
-  const film = films.at(filmId - 1);
+  const film = films.find((flm) => flm.id === id);
+  if (!film) {
+    return <NotFoundPage/>;
+  }
 
   return (
     <div className="player">
-      <video src="#" className="player__video" poster={film?.posterImg}></video>
+      <video src="#" className="player__video" poster={film.posterImage}></video>
 
       <button type="button" className="player__exit">Exit</button>
 
@@ -19,7 +22,7 @@ export function PlayerPage({films}: PlayerPageProps) {
         <div className="player__controls-row">
           <div className="player__time">
             <progress className="player__progress" value="30" max="100"></progress>
-            <div className="player__toggler">Toggler</div>
+            <div className={styles.player__toggler}>Toggler</div>
           </div>
           <div className="player__time-value">1:30:29</div>
         </div>

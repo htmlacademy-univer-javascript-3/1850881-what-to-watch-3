@@ -21,14 +21,16 @@ export function App(props: AppProps) {
         <Route
           path={AppRoute.MyList}
           element={
-            <PrivateRoute authorizationStatus={AuthorizationStatus.NoAuth}>
+            <PrivateRoute authorizationStatus={AuthorizationStatus.Auth}>
               <MyListPage {...props}/>
             </PrivateRoute>
           }
         />
-        <Route path={AppRoute.Film} element={<FilmPage/>}/>
-        <Route path={AppRoute.AddReview} element={<AddReviewPage {...props}/>}/>
-        <Route path={AppRoute.Player} element={<PlayerPage {...props}/>}/>
+        <Route path={`${AppRoute.Films}/:id`}>
+          <Route index element={<FilmPage {...props}/>}/>
+          <Route path={AppRoute.AddReview} element={<AddReviewPage {...props}/>}/>
+        </Route>
+        <Route path={`${AppRoute.Player}/:id`} element={<PlayerPage {...props}/>}/>
         <Route path='*' element={<NotFoundPage/>}/>
       </Routes>
     </BrowserRouter>

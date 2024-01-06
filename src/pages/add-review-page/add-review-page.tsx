@@ -1,20 +1,25 @@
 import {Logo} from '../../components/logo/logo.tsx';
 import {MyListPageProps} from '../my-list-page/my-list-page.tsx';
-import {useParams} from 'react-router-dom';
+import {Link, useParams} from 'react-router-dom';
 import {ReviewForm} from '../../components/review-form/review-form.tsx';
+import {UserBlock} from '../../components/user-block/user-block.tsx';
+import {NotFoundPage} from '../not-found-page/not-found-page.tsx';
+import {AppRoute} from '../../types/app-route.ts';
 
 type AddReviewPageProps = MyListPageProps;
 
 export function AddReviewPage({films}: AddReviewPageProps) {
   const {id} = useParams();
-  const filmId = Number(id);
-  const film = films.at(filmId - 1);
+  const film = films.find((flm) => flm.id === id);
+  if (!film) {
+    return <NotFoundPage/>;
+  }
 
   return (
     <section className="film-card film-card--full">
       <div className="film-card__header">
         <div className="film-card__bg">
-          <img src={film?.posterImg} alt={film?.name}/>
+          <img src={film.backgroundImage} alt={film.name}/>
         </div>
 
         <h1 className="visually-hidden">WTW</h1>
@@ -25,7 +30,7 @@ export function AddReviewPage({films}: AddReviewPageProps) {
           <nav className="breadcrumbs">
             <ul className="breadcrumbs__list">
               <li className="breadcrumbs__item">
-                <a href="film-page.html" className="breadcrumbs__link">{film?.name}</a>
+                <Link to={`${AppRoute.Films}/${film.id}`} className="breadcrumbs__link">{film.name}</Link>
               </li>
               <li className="breadcrumbs__item">
                 <a className="breadcrumbs__link">Add review</a>
@@ -33,20 +38,11 @@ export function AddReviewPage({films}: AddReviewPageProps) {
             </ul>
           </nav>
 
-          <ul className="user-block">
-            <li className="user-block__item">
-              <div className="user-block__avatar">
-                <img src="img/avatar.jpg" alt="User avatar" width="63" height="63"/>
-              </div>
-            </li>
-            <li className="user-block__item">
-              <a className="user-block__link">Sign out</a>
-            </li>
-          </ul>
+          <UserBlock/>
         </header>
 
         <div className="film-card__poster film-card__poster--small">
-          <img src={film?.posterImg} alt={film?.name} width="218" height="327"/>
+          <img src={film.posterImage} alt={film.name} width="218" height="327"/>
         </div>
       </div>
       <ReviewForm></ReviewForm>

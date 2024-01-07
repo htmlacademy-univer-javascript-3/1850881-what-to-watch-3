@@ -7,11 +7,10 @@ import {MyListPageProps} from '../my-list-page/my-list-page.tsx';
 import {FilmList} from '../../components/film-list/film-list.tsx';
 import {PlayButton} from '../../components/play-button/play-button.tsx';
 import {AddToMyListButton} from '../../components/add-to-my-list-button/add-to-my-list-button.tsx';
-import {getRatingLevel} from '../../utils/film-rating/get-rating-level.ts';
-import {formatRatingScore} from '../../utils/film-rating/format-rating-score.ts';
 import {AuthorizationStatus} from '../../types/authorization-status.ts';
 import {AppRoute} from '../../types/app-route.ts';
 import {Link} from 'react-router-dom';
+import { FilmTabs } from '../../components/film-tabs/film-tabs.tsx';
 
 type FilmPageProps = MyListPageProps;
 
@@ -66,39 +65,7 @@ export function FilmPage({films}: FilmPageProps) {
               <img src={film.posterImage} alt={`${film.name} poster`} width="218" height="327"/>
             </div>
 
-            <div className="film-card__desc">
-              <nav className="film-nav film-card__nav">
-                <ul className="film-nav__list">
-                  <li className="film-nav__item film-nav__item--active">
-                    <a href="#" className="film-nav__link">Overview</a>
-                  </li>
-                  <li className="film-nav__item">
-                    <a href="#" className="film-nav__link">Details</a>
-                  </li>
-                  <li className="film-nav__item">
-                    <a href="#" className="film-nav__link">Reviews</a>
-                  </li>
-                </ul>
-              </nav>
-
-              <div className="film-rating">
-                <div className="film-rating__score">{formatRatingScore(film.rating)}</div>
-                <p className="film-rating__meta">
-                  <span className="film-rating__level">{getRatingLevel(film.rating)}</span>
-                  <span className="film-rating__count">{film.scoresCount} ratings</span>
-                </p>
-              </div>
-
-              <div className="film-card__text">
-                <p>{film.description}</p>
-
-                <p className="film-card__director"><strong>Director: {film.director}</strong></p>
-
-                <p className="film-card__starring">
-                  <strong>Starring: {film.starring.slice(0, 4).join(', ')} and other</strong>
-                </p>
-              </div>
-            </div>
+            <FilmTabs film={film}/>
           </div>
         </div>
       </section>
@@ -106,7 +73,7 @@ export function FilmPage({films}: FilmPageProps) {
       <div className="page-content">
         <section className="catalog catalog--like-this">
           <h2 className="catalog__title">More like this</h2>
-          <FilmList films={films.slice(0, 9)}></FilmList>
+          <FilmList films={films.slice(0, 4)}></FilmList>
         </section>
 
         <footer className="page-footer">

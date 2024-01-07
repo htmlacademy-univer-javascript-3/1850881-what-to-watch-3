@@ -61,8 +61,8 @@ export function MainPage({films}: MainScreenProps) {
       <div className="page-content">
         <section className="catalog">
           <h2 className="catalog__title visually-hidden">Catalog</h2>
-          <GenresList films={films}/>
-          <FilmList films={films}/>
+          <GenresList films={films.slice(1)}/>
+          <FilmList films={films.slice(1)}/>
           <ShowMoreButton/>
         </section>
 

@@ -20,7 +20,9 @@ export const films: Film[] = [
     runTime: 99,
     genre: 'Comedy',
     released: 2014,
-    isFavorite: false
+    isFavorite: false,
+    previewImage: '',
+    previewVideoLink: ''
   },
   {
     id: '1',
@@ -37,7 +39,9 @@ export const films: Film[] = [
     description: 'Mock description.',
     director: 'Mock director',
     rating: 1.1,
-    starring: []
+    starring: [],
+    previewImage: '',
+    previewVideoLink: ''
   },
   {
     id: '2',
@@ -54,7 +58,9 @@ export const films: Film[] = [
     description: 'Mock description.',
     director: 'Mock director',
     rating: 1.1,
-    starring: []
+    starring: [],
+    previewImage: '',
+    previewVideoLink: ''
   },
   {
     id: '3',
@@ -71,7 +77,9 @@ export const films: Film[] = [
     description: 'Mock description.',
     director: 'Mock director',
     rating: 1.1,
-    starring: []
+    starring: [],
+    previewImage: '',
+    previewVideoLink: ''
   },
   {
     id: '4',
@@ -88,7 +96,9 @@ export const films: Film[] = [
     description: 'Mock description.',
     director: 'Mock director',
     rating: 1.1,
-    starring: []
+    starring: [],
+    previewImage: '',
+    previewVideoLink: ''
   },
   {
     id: '5',
@@ -105,7 +115,9 @@ export const films: Film[] = [
     description: 'Mock description.',
     director: 'Mock director',
     rating: 1.1,
-    starring: []
+    starring: [],
+    previewImage: '',
+    previewVideoLink: ''
   },
   {
     id: '6',
@@ -122,7 +134,9 @@ export const films: Film[] = [
     description: 'Mock description.',
     director: 'Mock director',
     rating: 1.1,
-    starring: []
+    starring: [],
+    previewImage: '',
+    previewVideoLink: ''
   },
   {
     id: '7',
@@ -139,7 +153,9 @@ export const films: Film[] = [
     description: 'Mock description.',
     director: 'Mock director',
     rating: 1.1,
-    starring: []
+    starring: [],
+    previewImage: '',
+    previewVideoLink: ''
   },
   {
     id: '8',
@@ -156,7 +172,9 @@ export const films: Film[] = [
     description: 'Mock description.',
     director: 'Mock director',
     rating: 1.1,
-    starring: []
+    starring: [],
+    previewImage: '',
+    previewVideoLink: ''
   },
   {
     id: '9',
@@ -173,7 +191,9 @@ export const films: Film[] = [
     description: 'Mock description.',
     director: 'Mock director',
     rating: 1.1,
-    starring: []
+    starring: [],
+    previewImage: '',
+    previewVideoLink: ''
   },
   {
     id: '10',
@@ -190,7 +210,9 @@ export const films: Film[] = [
     description: 'Mock description.',
     director: 'Mock director',
     rating: 1.1,
-    starring: []
+    starring: [],
+    previewImage: '',
+    previewVideoLink: ''
   },
   {
     id: '11',
@@ -207,7 +229,9 @@ export const films: Film[] = [
     description: 'Mock description.',
     director: 'Mock director',
     rating: 1.1,
-    starring: []
+    starring: [],
+    previewImage: '',
+    previewVideoLink: ''
   },
   {
     id: '12',
@@ -224,7 +248,9 @@ export const films: Film[] = [
     description: 'Mock description.',
     director: 'Mock director',
     rating: 1.1,
-    starring: []
+    starring: [],
+    previewImage: '',
+    previewVideoLink: ''
   },
   {
     id: '13',
@@ -241,7 +267,9 @@ export const films: Film[] = [
     description: 'Mock description.',
     director: 'Mock director',
     rating: 1.1,
-    starring: []
+    starring: [],
+    previewImage: '',
+    previewVideoLink: ''
   },
   {
     id: '14',
@@ -258,7 +286,9 @@ export const films: Film[] = [
     description: 'Mock description.',
     director: 'Mock director',
     rating: 1.1,
-    starring: []
+    starring: [],
+    previewImage: '',
+    previewVideoLink: ''
   },
   {
     id: '15',
@@ -275,7 +305,9 @@ export const films: Film[] = [
     description: 'Mock description.',
     director: 'Mock director',
     rating: 1.1,
-    starring: []
+    starring: [],
+    previewImage: '',
+    previewVideoLink: ''
   },
   {
     id: '16',
@@ -292,7 +324,9 @@ export const films: Film[] = [
     description: 'Mock description.',
     director: 'Mock director',
     rating: 1.1,
-    starring: []
+    starring: [],
+    previewImage: '',
+    previewVideoLink: ''
   },
   {
     id: '17',
@@ -309,7 +343,9 @@ export const films: Film[] = [
     description: 'Mock description.',
     director: 'Mock director',
     rating: 1.1,
-    starring: []
+    starring: [],
+    previewImage: '',
+    previewVideoLink: ''
   },
   {
     id: '18',
@@ -326,7 +362,9 @@ export const films: Film[] = [
     description: 'Mock description.',
     director: 'Mock director',
     rating: 1.1,
-    starring: []
+    starring: [],
+    previewImage: '',
+    previewVideoLink: ''
   },
   {
     id: '19',
@@ -343,7 +381,9 @@ export const films: Film[] = [
     description: 'Mock description.',
     director: 'Mock director',
     rating: 1.1,
-    starring: []
+    starring: [],
+    previewImage: '',
+    previewVideoLink: ''
   },
   {
     id: '20',
@@ -360,6 +400,8 @@ export const films: Film[] = [
     description: 'Mock description.',
     director: 'Mock director',
     rating: 1.1,
-    starring: []
+    starring: [],
+    previewImage: '',
+    previewVideoLink: ''
   }
 ];

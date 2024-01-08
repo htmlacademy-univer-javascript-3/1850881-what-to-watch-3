@@ -1,16 +1,26 @@
 import {Logo} from '../../components/logo/logo.tsx';
-import {MyListPageProps} from '../my-list-page/my-list-page.tsx';
-import {Link, useParams} from 'react-router-dom';
+import {Link, useNavigate} from 'react-router-dom';
 import {ReviewForm} from '../../components/review-form/review-form.tsx';
 import {UserBlock} from '../../components/user-block/user-block.tsx';
 import {NotFoundPage} from '../not-found-page/not-found-page.tsx';
 import {AppRoute} from '../../types/app-route.ts';
+import {useAppSelector} from '../../hooks';
+import {getAuthStatus} from '../../store/reducers/user-reducer/selector.ts';
+import {useEffect} from 'react';
+import {AuthorizationStatus} from '../../types/authorization-status.ts';
+import {getFilm} from '../../store/reducers/film-reducer/selector.ts';
 
-type AddReviewPageProps = MyListPageProps;
+export function AddReviewPage() {
+  const film = useAppSelector(getFilm);
+  const authStatus = useAppSelector(getAuthStatus);
+  const navigate = useNavigate();
 
-export function AddReviewPage({films}: AddReviewPageProps) {
-  const {id} = useParams();
-  const film = films.find((flm) => flm.id === id);
+  useEffect(() => {
+    if (authStatus !== AuthorizationStatus.Auth) {
+      navigate(AppRoute.SignIn);
+    }
+  }, [authStatus, navigate]);
+
   if (!film) {
     return <NotFoundPage/>;
   }

@@ -1,20 +1,23 @@
 import {GenresItem} from '../genres-item/genres-item.tsx';
-import {getGenresList} from './get-genres-list.ts';
-import {MAX_GENRES_COUNT} from '../../constants.ts';
+import {ALL_GENRES, MAX_GENRES_COUNT} from '../../constants.ts';
+import {useAppSelector} from '../../hooks';
+import {getFilms} from '../../store/reducers/data-reducer/selector.ts';
 import {Film} from '../../types/film.ts';
 
-type GenresListProps = {
-  films: Film[];
-}
+const getGenresList = (films: Film[]) => (
+  [ALL_GENRES].concat(...new Set(films.map((film) => film.genre)))
+);
 
-export function GenresList({films}: GenresListProps) {
+export function GenresList() {
+  const films = useAppSelector(getFilms);
   const genres = getGenresList(films);
+
   return (
     <ul className="catalog__genres-list">
-      <GenresItem isActive url={'#'} genre={genres[0]}/>
+      <GenresItem genre={genres[0]}/>
       {
         genres.slice(1, MAX_GENRES_COUNT + 1)
-          .map((genre) => <GenresItem isActive={false} url={'#'} genre={genre} key={genre}/>)
+          .map((genre) => <GenresItem genre={genre} key={genre}/>)
       }
     </ul>
   );

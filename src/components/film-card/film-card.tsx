@@ -37,7 +37,7 @@ export function FilmCard({film}: FilmCardProps) {
       onMouseEnter={mouseEnterHandler}
       onMouseLeave={mouseLeaveHandler}
     >
-      <VideoPlayer src={film.videoLink} poster={film.posterImage} isPlaying={isVideoPlaying} muted/>
+      <VideoPlayer src={film.previewVideoLink} poster={film.previewImage} isPlaying={isVideoPlaying} muted/>
       {!isVideoPlaying && <h3 className="small-film-card__title">{film.name}</h3>}
     </Link>
   );

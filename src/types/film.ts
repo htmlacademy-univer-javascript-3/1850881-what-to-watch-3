@@ -14,4 +14,6 @@ export type Film = {
   genre: string;
   released: number;
   isFavorite: boolean;
+  previewImage: string;
+  previewVideoLink: string;
 }

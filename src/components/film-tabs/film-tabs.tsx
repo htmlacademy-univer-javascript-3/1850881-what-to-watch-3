@@ -1,16 +1,14 @@
-import {Film} from '../../types/film.ts';
 import {Overview} from './overview/overview.tsx';
 import {Details} from './details/details.tsx';
 import {Reviews} from './reviews/reviews.tsx';
 import {FilmTab} from '../../types/film-tab.ts';
 import {useState} from 'react';
+import {useAppSelector} from '../../hooks';
+import {getComments} from '../../store/reducers/film-reducer/selector.ts';
 
-export type FilmTabsProps = {
-  film: Film;
-}
-
-export function FilmTabs({film}: FilmTabsProps) {
+export function FilmTabs() {
   const [currentFilmTab, setCurrentFilmTab] = useState<FilmTab>(FilmTab.Overview);
+  const comments = useAppSelector(getComments);
 
   return (
     <div className="film-card__desc">
@@ -52,9 +50,9 @@ export function FilmTabs({film}: FilmTabsProps) {
         </ul>
       </nav>
 
-      {currentFilmTab === FilmTab.Overview && <Overview film={film}/>}
-      {currentFilmTab === FilmTab.Details && <Details film={film}/>}
-      {currentFilmTab === FilmTab.Reviews && <Reviews/>}
+      {currentFilmTab === FilmTab.Overview && <Overview/>}
+      {currentFilmTab === FilmTab.Details && <Details/>}
+      {currentFilmTab === FilmTab.Reviews && <Reviews comments={comments}/>}
     </div>
   );
 }

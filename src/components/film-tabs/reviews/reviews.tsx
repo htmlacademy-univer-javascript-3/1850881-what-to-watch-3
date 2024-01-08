@@ -1,7 +1,11 @@
-import {comments} from '../../../mocks/comments.ts';
 import {Review} from '../../review/review.tsx';
+import {Comment} from '../../../types/comment.ts';
 
-export function Reviews() {
+type ReviewsProps = {
+  comments: Comment[];
+}
+
+export function Reviews({comments}: ReviewsProps) {
   const firstCommentsHalf = comments.slice(0, comments.length / 2);
   const secondCommentsHalf = comments.slice(comments.length / 2);
   return (

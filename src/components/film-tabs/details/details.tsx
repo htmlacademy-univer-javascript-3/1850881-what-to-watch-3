@@ -1,12 +1,15 @@
-import {Film} from '../../../types/film.ts';
 import {Fragment} from 'react';
 import {formatRunTime} from '../../../utils/time/format-run-time.ts';
+import {useAppSelector} from '../../../hooks';
+import {getFilm} from '../../../store/reducers/film-reducer/selector.ts';
+import {NotFoundPage} from '../../../pages/not-found-page/not-found-page.tsx';
 
-export type DetailsProps = {
-  film: Film;
-}
+export function Details() {
+  const film = useAppSelector(getFilm);
+  if (!film) {
+    return <NotFoundPage/>;
+  }
 
-export function Details({film}: DetailsProps) {
   return (
     <div className="film-card__text film-card__row">
       <div className="film-card__text-col">

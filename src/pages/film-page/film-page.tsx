@@ -3,7 +3,6 @@ import {Logo} from '../../components/logo/logo.tsx';
 import {UserBlock} from '../../components/user-block/user-block.tsx';
 import {useParams} from 'react-router-dom';
 import {NotFoundPage} from '../not-found-page/not-found-page.tsx';
-import {MyListPageProps} from '../my-list-page/my-list-page.tsx';
 import {FilmList} from '../../components/film-list/film-list.tsx';
 import {PlayButton} from '../../components/play-button/play-button.tsx';
 import {AddToMyListButton} from '../../components/add-to-my-list-button/add-to-my-list-button.tsx';
@@ -11,14 +10,40 @@ import {AuthorizationStatus} from '../../types/authorization-status.ts';
 import {AppRoute} from '../../types/app-route.ts';
 import {Link} from 'react-router-dom';
 import { FilmTabs } from '../../components/film-tabs/film-tabs.tsx';
+import {useAppDispatch, useAppSelector} from '../../hooks';
+import {useEffect} from 'react';
+import {resetFilmState} from '../../store/reducers/film-reducer/film-reducer.ts';
+import {fetchFilmAction, fetchFilmCommentsAction, fetchSimilarFilmsAction} from '../../store/api-actions.ts';
+import {getFilm, getSimilarFilms} from '../../store/reducers/film-reducer/selector.ts';
+import {getAuthStatus} from '../../store/reducers/user-reducer/selector.ts';
+import {getFilmsErrorStatus} from '../../store/reducers/data-reducer/selector.ts';
+import {Loader} from '../../components/loader/loader.tsx';
 
-type FilmPageProps = MyListPageProps;
-
-export function FilmPage({films}: FilmPageProps) {
-  const authStatus = AuthorizationStatus.Auth;
-  const {id} = useParams();
-  const film = films.find((flm) => flm.id === id);
+export function FilmPage() {
+  const id = useParams().id || '';
+  const dispatch = useAppDispatch();
+  useEffect(() => {
+    let isMounted = true;
+    if (isMounted) {
+      dispatch(resetFilmState());
+      dispatch(fetchFilmCommentsAction(id));
+      dispatch(fetchFilmAction(id));
+      dispatch(fetchSimilarFilmsAction(id));
+    }
+    return () => {
+      isMounted = false;
+    };
+  }, [id, dispatch]);
+  const film = useAppSelector(getFilm);
+  const similarFilms = useAppSelector(getSimilarFilms);
+  const authStatus = useAppSelector(getAuthStatus);
+  const filmErrorStatus = useAppSelector(getFilmsErrorStatus);
   if (!film) {
+    return (
+      <Loader/>
+    );
+  }
+  if (filmErrorStatus) {
     return <NotFoundPage/>;
   }
 
@@ -46,8 +71,8 @@ export function FilmPage({films}: FilmPageProps) {
               </p>
 
               <div className="film-card__buttons">
-                <PlayButton/>
-                <AddToMyListButton/>
+                <PlayButton filmId={film.id}/>
+                <AddToMyListButton filmId={film.id} isFavorite={film.isFavorite}/>
                 {
                   authStatus === AuthorizationStatus.Auth &&
                   <Link to={`${AppRoute.Films}/${film.id}/${AppRoute.AddReview}`} className="btn film-card__button">
@@ -65,7 +90,7 @@ export function FilmPage({films}: FilmPageProps) {
               <img src={film.posterImage} alt={`${film.name} poster`} width="218" height="327"/>
             </div>
 
-            <FilmTabs film={film}/>
+            <FilmTabs/>
           </div>
         </div>
       </section>
@@ -73,7 +98,7 @@ export function FilmPage({films}: FilmPageProps) {
       <div className="page-content">
         <section className="catalog catalog--like-this">
           <h2 className="catalog__title">More like this</h2>
-          <FilmList films={films.slice(0, 4)}></FilmList>
+          <FilmList films={similarFilms}></FilmList>
         </section>
 
         <footer className="page-footer">

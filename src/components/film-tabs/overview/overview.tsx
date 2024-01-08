@@ -1,12 +1,15 @@
-import {Film} from '../../../types/film.ts';
 import {formatRatingScore} from '../../../utils/film-rating/format-rating-score.ts';
 import {getRatingLevel} from '../../../utils/film-rating/get-rating-level.ts';
+import {NotFoundPage} from '../../../pages/not-found-page/not-found-page.tsx';
+import {useAppSelector} from '../../../hooks';
+import {getFilm} from '../../../store/reducers/film-reducer/selector.ts';
 
-export type OverviewProps = {
-  film: Film;
-}
+export function Overview() {
+  const film = useAppSelector(getFilm);
+  if (!film) {
+    return <NotFoundPage/>;
+  }
 
-export function Overview({film}: OverviewProps) {
   return (
     <>
       <div className="film-rating">

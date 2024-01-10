@@ -7,7 +7,7 @@ export function ErrorPage() {
 
   return (
     <>
-      <p className={styles.error__text}>Не удалось загрузить вопросы</p>
+      <p className={styles.error__text}>Не удалось загрузить страницу</p>
       <button
         onClick={() => {
           dispatch(fetchFilmsAction());

@@ -11,7 +11,8 @@ import {
 const initialState: FilmState = {
   film: null,
   comments: [],
-  similarFilms: []
+  similarFilms: [],
+  isFilmLoading: false
 };
 
 export const filmReducer = createSlice({
@@ -27,9 +28,14 @@ export const filmReducer = createSlice({
     builder
       .addCase(fetchFilmAction.fulfilled, (state, action) => {
         state.film = action.payload;
+        state.isFilmLoading = false;
+      })
+      .addCase(fetchFilmAction.pending, (state) => {
+        state.isFilmLoading = true;
       })
       .addCase(fetchFilmAction.rejected, (state) => {
         state.film = null;
+        state.isFilmLoading = false;
       })
       .addCase(fetchFilmCommentsAction.fulfilled, (state, action) => {
         state.comments = action.payload;

@@ -28,4 +28,5 @@ export type FilmState = {
   film: Film | null;
   comments: Comment[];
   similarFilms: Film[];
+  isFilmLoading: boolean;
 }
